@@ -35,4 +35,4 @@ Le programme crée un dossier correspondant à l'année actuelle, avec ( en assu
 par template, compléter par les valeurs contenues dans valConst. Vous aurez aussi un fichier.ics contenant les dates des séances de tir que vous pourrez
 importer dans un calendrier comme Google Calendar
 
-[Vous devriez normalement voir un exemple de convocation](img/pdf.png)
+![Vous devriez normalement voir un exemple de convocation](img/pdf.png)
