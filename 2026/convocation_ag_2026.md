@@ -24,7 +24,7 @@ Dans la salle de réunion
 2. Procès-verbal de l'assemblée générale du 09 mars 2025, remarques et approbation
 3. Rapport du Chef
 4. Approbations et Décharges des Rapports
-5. Admissions, Exil
+5. Admissions, Démission
 6. Élection du comité
 7. Propositions individuelles
 8. Divers

@@ -1,38 +1,120 @@
-# Outils de secrétaire
-Ce programme a pour but de faciliter la création de divers documents pour la société, il faut cependant fournir quelques documents au préalable.
-Ces documents doivent être placés dans le dossier template, ou data.
+# secretary_task_manager
 
-# Premier Lancement
-- sudo locale-gen fr_FR.utf8 pour unbutu
+Outil d'automatisation documentaire développé pour le secrétariat de la
+Société de tir de Laconnex. Il génère les documents administratifs récurrents
+de l'association à partir de modèles Markdown, via un menu en ligne de commande.
 
-# Entrée
-- Insèrer les documents voulus sous format markdown dans le dossier template. Vous pouvez également ajouter des éléments HTML
-dans ce markdown qui seront pris en compte lors de la création en PDF. La liste des variables constantes est située dans le fichier
-valConst.csv situé dans le dossier Data. Veuillez respecter le format {{Variable}} pour que le programme remplisse automatiquement les champs
+Chaque document est produit **en Markdown et en PDF**. Le Markdown reste
+éditable : si une erreur apparaît sur le PDF, le secrétaire corrige le fichier
+source et régénère le document, sans repasser par un logiciel de mise en page.
 
-- Un fichier valConst.csv situé dans le dossier data. Vous pouvez modifier ce dossier pour ajouter des nouvelles variables ou changer
-celles existants. Ce fichier peut être ouvert en Excel, veuillez cependant respecter le format imposé (Trois cellules). Certaines valeurs
-ne sont pas affichées dans ce fichier car ils sont calculés automatiquement
-- - ANNEE : L'année actuelle
-- - NB_PRESENT : Le nombre de membres présents durant l'assemblée générale
-- - ANNEE_PRECEDENT : L'année précédente
-- - TRAINING / OPEN_DOORS / CAMPAIGN / ENDING_SHOOT Correspond aux dates de certains événements. Elles se remplissent automatiquement lors de la création du faire-part
+## Documents pris en charge
 
-- Un PDF contenant les dates des jours de tirs. Un PDF d'exemple existe dans le dossier data (qui doit contenir votre nouveau planning)
-- Un fichier cSV contenant les informations pour les rappels. Merci de suivre le format de date (Année-Mois-Jour)
+| Document | Modèle (`template/`) | Autres entrées (`data/`) |
+|---|---|---|
+| Convocation | `convocation_ag.md` | variables |
+| PV d'assemblée générale | `pv_ag.md` | variables |
+| Faire-part | `faire_part.md` | `Annonce_des_jours_de_tirs_<ANNÉE>.pdf` & variable |
+| Liste des membres | modèle Markdown | `membres.csv` & variable |
 
-# Programming
-Cette partie doit être complète pour contenir des éléments devant être modifiés depuis le code
-- md_generator
-- - Data_tableau est un tableau utilisé pour la fonction membres uniquement. Elle permet de définir les champs que votre tableau doit contenir
+## Fonctionnement
 
-# Utilisation
-python3 main.py <br>
-Lorsque le programme démarre, vous aurez une liste de choix : Créer un/des mds à partir de templates et les exporter en PDF, Créer un fichier contenant les dates des séances de tirs, Effectuer les deux commandes précédentes ou encore exporter un/des markdowns en PDF. Cette dernière fonction est utilisée si vous avez modifié quelques lignes directement sur les markdowns situés dans le dossier de l'année.
+### Variables
 
-# Sortie 
-Le programme crée un dossier correspondant à l'année actuelle, avec ( en assumant que vous avez choisi l'option de tout exécuter), un fichier PDF et Markdown
-par template, compléter par les valeurs contenues dans valConst. Vous aurez aussi un fichier.ics contenant les dates des séances de tir que vous pourrez
-importer dans un calendrier comme Google Calendar
+Dans les modèles, le secrétaire peut placer des variables dans le markdown selon la syntaxe suivant
+
+- `{{NOMVARIABLE}}` — valeur récurrente définie dans `data/valConst.csv`
+
+Format de `valConst.csv` (une variable par ligne) :
+
+```
+NomValConst;Valeur;Commentaire (facultatif)
+```
+
+### Convocation, PV_AG, Faire-part et Membres
+
+Le secrétaire rédige le texte et le style (CSS) dans le modèle Markdown
+correspondant, en y insérant les marqueurs. Le faire-part lit en plus un PDF
+`data/Annonce_des_jours_de_tirs_<ANNÉE>.pdf` contenant les dates des séances de tir.
+Le md membres lit aussi un csv `data/event.csv` 
+
+### Liste des membres
+
+Génère un tableau des membres et de leurs rôles (Markdown + PDF) à partir de
+`data/membres.csv`, au format :
+
+```
+Role;Nom;Prenom;Adresse;Lieu;Date de Naissance;Entree;Tel.;Tel.prive;Mail
+```
+
+Seuls `Role`, `Nom` et `Prenom` sont utilisés par le programme ; les autres
+champs sont conservés pour les besoins administratifs du secrétariat.
+
+### Event
+
+Le secrétaire peut insèrer des date à partir dê `data/event.csv`, au format :
+
+```
+DateDébut(YYYY-MM-DD);DateFin(YYYY-MM-DD);Description;HeureStart;HeureFin
+```
+
+Ces dates peuvent ensuite être exportées avec le programme
+
+
+## Structure du projet
+
+```
+main.py               point d'entrée (menu terminal)
+requirements.txt
+script/
+    user_interface.py menu et interactions utilisateur
+    md_generator.py   génération Markdown puis conversion PDF
+    calendar_event.py lecture des dates et export .ics
+template/             modèles Markdown des documents
+data/                 données sources 
+    membres.csv       contient les informations des membres 
+    valConst.csv      contient les variables utilisées pour remplir les markdown
+    event.csv         contient les dates à export en .ics
+AnnéeActuel/          crée automatiquement au lancement. stock les markdowns et pdf génèrés
+```
+
+## Stack
+
+- **Python**
+- [simple-term-menu](https://pypi.org/project/simple-term-menu/) — menu interactif au terminal
+- **pandas** — manipulation des données membres et lectures des variables
+- **pypdf** — lecture du PDF des dates de tir
+- **ics** — export des dates au format calendrier (`.ics`)
+- **markdown-pdf** — conversion Markdown → PDF
+- **re** — analyse des marqueurs par expressions régulières
+
+## Menu
+![Le menu principale](img/MainMenu.png)
+Tout les sous menus permettant à l'utilisateur de sélectionner un ou plusieurs options à l'aide de la tabulations. Il est d'ailleurs possibles
+par exemple de genèrer la convocation et de quitter le menu actuel pour revenir au menu principale
+![Le menu pour exporter des templates en markdown et pdf](img/Menu1.png)
+![Le menu pour exporter des dates](img/Menu2.png)
+![Le menu permettant d'exporter un md en pdf](img//Menu3.png)
+Ce menu est dynamique, il n'affiche que les markdowns ayant déjà été générer par le programme
+
+## Installation
+
+```bash
+git clone https://github.com/Ivanneuf/secretary_task_manager.git
+cd secretary_task_manager
+pip install -r requirements.txt
+python main.py
+```
+
+## Portée
+
+Outil développé sur mesure pour les documents de la Société de tir de Laconnex :
+les modèles et les règles de génération sont spécifiques à cette association. Bien qe la fonction de 
+remplissage de md avec variable pourrait être adapté pour n'importe quel documents.
+
+## Contexte
+
+Mandat réalisé en février–mars 2025. Logiciel utilisé en production par le
+secrétariat de l'association.
 
 ![Vous devriez normalement voir un exemple de convocation](img/pdf.png)

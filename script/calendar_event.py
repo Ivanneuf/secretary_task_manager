@@ -89,8 +89,8 @@ class calendar_event:
         for index,entry in self.df.iterrows():
             e = Event()
             e.name = entry['Description']
-            e.begin = datetime.fromisoformat(entry["Date"] +"T" + entry["Start"] +":00+02:00")
-            e.end = datetime.fromisoformat(entry["Date"] +"T" + entry["End"] + ":00+02:00")
+            e.begin = datetime.fromisoformat(entry["DateDebut"] +"T" + entry["HeureDebut"] +":00+02:00")
+            e.end = datetime.fromisoformat(entry["DateFin"] +"T" + entry["HeureFin"] + ":00+02:00")
             c.events.add(e)
         c.events
         # [<Event 'My cool event' begin:2014-01-01 00:00:00 end:2014-01-01 00:00:01>]
