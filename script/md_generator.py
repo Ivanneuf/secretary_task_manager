@@ -29,11 +29,11 @@ class md_generator:
             self.df = pd.read_csv('./data/valConst.csv',sep=";",index_col=0)
             self.nbMembre = len(self.df.loc["PRESENT_MEMBERS"]["Information"].split(','))
         except Exception as e:
-            print("ERROR : Le fichier de données n'est pas au bon endroit ou son nom a été modifié. Cela ne devrait pas arriver si vous n'avez modifié que le contenue de valConst.csv avec excel ou à la main (mais dans ce cas la, je suis sur que Coco ne verra pas sa)")
+            print("ERROR : Le fichier de données n'est pas au bon endroit ou son nom a été modifié. Cela ne devrait pas arriver si vous n'avez modifié que le contenue de valConst.csv avec excel ou à la main (mais dans ce cas la, je suis sur que le secrétaire ne verra pas sa)")
             print(f"{e}")
             sys.exit()
         self.annee_actuelle = datetime.now().year
-        #Liste modifiable contenant des éléments qui seront automatiquement remplis. Mettrer à jour le READMe pour indique à l'utilisateur de leurs existence
+        #Liste modifiable contenant des éléments qui seront automatiquement remplis.
         self.lstACalc = {"ANNEE" : str(self.annee_actuelle), "NB_PRESENT" : str(self.nbMembre), "ANNEE_PRECEDENT" : str(self.annee_actuelle-1),"TRAINING" : val_indisponible, "OPEN_DOORS" : val_indisponible, "CAMPAIGN":val_indisponible, "ENDING_SHOOT":val_indisponible}
         self.PATH_RES_FOLDER = sys.path[0] + "/" + str(self.annee_actuelle)
         pathlib.Path(self.PATH_RES_FOLDER).mkdir(exist_ok=True)
@@ -91,7 +91,6 @@ class md_generator:
             print(f"Erreur, vous n'avez pas mis le template {filename}.md dans le dossier template.")
             print(f"{e}")
             exit()
-
         md_content, empty = self.fill_md(f)
         self.save_md(filename,md_content)        
         
@@ -241,11 +240,9 @@ class md_generator:
             print(f"ERROR, le fichier {filename} de l'année actuelle n'existe pas en md, assurez vous de crée le md auparavant")
             print(f"{e}")
             sys.exit()
-            
         md_content = fMd.read()
         fMd.close()
         pdf = MarkdownPdf(toc_level=2)
         pdf.add_section(Section(md_content))
         pdf.save(f"{self.PATH_RES_FOLDER}/{filename}.pdf")
-        print(f"Le fichier {filename} a été exporté avec succès \n")
             

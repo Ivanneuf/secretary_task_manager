@@ -114,7 +114,7 @@ class user_interface:
         """
         lst_file is a list containing all the filename in the template folder
         This function let you start the interace, allowing the user to have the
-        programm executed the task needed
+        programm execute the task needed
         """
         
         option_main = ["Créer des MD/PDF","Exporter des dates","Tout exécuter","Exporter des pdfs","Quitter le programme"]

@@ -1,17 +1,16 @@
 Nom Constante;Information;Description
 YEAR;2025;L'année actuel,utilisé pour la convocation et le pv de l'ag
-PRESIDENT;Khanou;Le nom/prénom du président
+PRESIDENT;Gérard Lenorman;Le nom/prénom du président
 DATE_AG;01-03-2025;Date de l'assemblée général suivre le format DD-MM-YY
 AG_START;15:43;Heure du début de l'assemblée général
 PRESENT_MEMBERS;Thierry Henry,Bob Lennon;Nom/Prénom des membres présent Veuillez utilise des , pour séparer des personnes et non des virgules
-MISSING_MEMBERS;Corentin,Scar,Trump;Pareil que le champ similaire
+MISSING_MEMBERS;Chuck,Scar,Trump;Pareil que le champ similaire
 OLD_AG_THINGS;Jm'en rapelle plus mais on a sacrément bien mangé après; Procès verbale de l'assemblée de l'année dernière
 RESUME_PRESIDENT;Moi président moi élire pour agir pas réfléchir; Self-explicatif
-RESUME_SHOOTING_DIRECTOR;Je voudrais être président; Self-explicatif
 RESUME_TRESORERY;Me like money; Self-explicatif
 RESUME_ACCOUNT_CONTROLER;C'est supposé faire quoi sa; Self-explicatif
 APPROBATIONS_RAPPORTS;Aprobe donc je décharge; Self-explicatif
-NEW_MEMBERS;Musk,Stall In,Mike Hunter; Suivre le format à present_member
+NEW_MEMBERS;Foo,Fee,Faa; Suivre le format à present_member
 LEAVING_MEMBERS;Labarrack Oubama; Suivre le format à present_member
 INDIVIDUAL_PURPOSE;Rajouter les frais du restaurant dans les dépense utiles.Efface l'achat de mon yacht en utilisant les fond sur le registre;Séparer les propositions en insèrant .
 DIVERS;Et si on fesait une sortie ski; Divers
@@ -20,15 +19,17 @@ SECRETARY;Corentin; Self-explicatif
 DATE_PV;02-03-2025; Date de la création du pv
 DATE_PREC_AG;Samedi le 5 mars 2024;Suivre le format de date_ag
 HEURE;12:40; L'heure de la convocation 
-DATE_ABSENCE;10-12-2025; Date limite pour déclarer son absence
+DATE_ABSENCE;17; Date limite pour déclarer son absence
 LIEU;Dans ma cave;L'adresse de l'ag
 LIEU_RESTAURANT;Le Krusty Krab, Sous l'océan; Nom du restaurant + adresse
 JOUR_PRECEDENT;09;Le jour de la réunion de l'an dernier
 PRESIDENT_NAME;Mike Grant;Nom du président
 VP_NAME;Grant Hunt;Nom du vice-président
 TRESORERY_NAME;Jimmy Gibs JR;Nom du Trésorier
-SECRETARY_NAME; Corentin; Nom de la sécretaire
-SHOOTING_DIRECTORY_NAME; Jsp;Nom du directeur de tir
+SECRETARY_NAME; Gaston; Nom de la sécretaire
+TESTONG;Donne moi qqchose
 ADD-ON_NAME1;Bozo; Si besoin de plus de membres, copier coller ces trois cellules sur une nouvelle ligne add-on_nameX NomPrenom
 ADD-ON_NAME2;Alba;...
-TBD;A REMPLIR;Temporaire et a supprimer une fois que vous aurez mis un meilleur nom/valeur
+JOUR;25
+DATE_RESTITUTION_DOCUMENT;23
+TBD;A REMPLIR;Exemple de comment créer une valeur temporaire
