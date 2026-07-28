@@ -58,7 +58,7 @@ Le secrétaire peut insèrer des date à partir de `data/event.csv`, au format :
 DateDébut(YYYY-MM-DD);DateFin(YYYY-MM-DD);Description;HeureStart;HeureFin
 ```
 
-Ces dates peuvent ensuite être exportées avec le programme
+Ces dates sont ensuite transformée en fichier ics importable dans la plupart des calendriers en ligne
 
 
 ## Structure du projet
@@ -75,7 +75,8 @@ data/                 données sources
     membres.csv       contient les informations des membres 
     valConst.csv      contient les variables utilisées pour remplir les markdown
     event.csv         contient les dates à export en .ics
-AnnéeActuel/          crée automatiquement au lancement. stock les markdowns et pdf génèrés
+<ANNÉE>/              dossier généré au lancement (ex. 2026/):
+                      contient les documents produits(Markdown + Pdf + ics)
 ```
 
 ## Stack
@@ -114,8 +115,9 @@ python main.py
 ## Portée
 
 Outil développé sur mesure pour les documents de la Société de tir de Laconnex :
-les modèles et les règles de génération sont spécifiques à cette association. Bien qe la fonction de 
+les modèles et les règles de génération sont spécifiques à cette association. Bien que la fonction de 
 remplissage de md avec variable pourrait être adapté pour n'importe quel documents.
+Le faire-part lit un PDF de dates dont la structure doit correspondre à celle définie lors du développement.
 
 ## Contexte
 
