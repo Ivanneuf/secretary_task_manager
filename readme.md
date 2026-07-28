@@ -28,7 +28,7 @@ Dans les modèles, le secrétaire peut placer des variables dans le markdown sel
 Format de `valConst.csv` (une variable par ligne) :
 
 ```
-NomValConst;Valeur;Commentaire (facultatif)
+NomVariable;Valeur;Commentaire (facultatif)
 ```
 
 ### Convocation, PV_AG, Faire-part et Membres
@@ -36,7 +36,7 @@ NomValConst;Valeur;Commentaire (facultatif)
 Le secrétaire rédige le texte et le style (CSS) dans le modèle Markdown
 correspondant, en y insérant les marqueurs. Le faire-part lit en plus un PDF
 `data/Annonce_des_jours_de_tirs_<ANNÉE>.pdf` contenant les dates des séances de tir.
-Le md membres lit aussi un csv `data/event.csv` 
+La liste de membres lit aussi un csv `data/event.csv` 
 
 ### Liste des membres
 
@@ -52,7 +52,7 @@ champs sont conservés pour les besoins administratifs du secrétariat.
 
 ### Event
 
-Le secrétaire peut insèrer des date à partir dê `data/event.csv`, au format :
+Le secrétaire peut insèrer des date à partir de `data/event.csv`, au format :
 
 ```
 DateDébut(YYYY-MM-DD);DateFin(YYYY-MM-DD);Description;HeureStart;HeureFin
@@ -90,11 +90,16 @@ AnnéeActuel/          crée automatiquement au lancement. stock les markdowns e
 
 ## Menu
 ![Le menu principale](img/MainMenu.png)
-Tout les sous menus permettant à l'utilisateur de sélectionner un ou plusieurs options à l'aide de la tabulations. Il est d'ailleurs possibles
-par exemple de genèrer la convocation et de quitter le menu actuel pour revenir au menu principale
+
+Tout les sous menus permettent à l'utilisateur de sélectionner un ou plusieurs options à l'aide de la tabulations. Il est d'ailleurs possibles
+par exemple de générer la convocation et de quitter le menu actuel pour revenir au menu principale
+
 ![Le menu pour exporter des templates en markdown et pdf](img/Menu1.png)
+
 ![Le menu pour exporter des dates](img/Menu2.png)
+
 ![Le menu permettant d'exporter un md en pdf](img//Menu3.png)
+
 Ce menu est dynamique, il n'affiche que les markdowns ayant déjà été générer par le programme
 
 ## Installation
